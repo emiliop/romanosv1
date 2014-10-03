@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>Convertir numeros decimales a romanos</title>
+	<script type="text/javascript">
+	    
+        var decimal = new Array();
+	    decimal = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+        var romano = new Array();
+	    romano = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+
+	    function romanoADecimal(value) 
+        {
+            //Se hace la validacion del año, no se permiten simbolos, letras, ni numeros mayores a 3998
+            if (value <= 0 || value >= 3999 || !/^([0-9])*$/.test(value)) 
+            
+            {
+                alert("El año no es valido");
+                value = "";
+                return value;
+            }
+             
+            else
+            {  
+           
+	            var numeroRomano = "";
+	            for (var i = 0; i < romano.length; i++) 
+                {
+	                while (value >= decimal[i]) 
+                    {
+	                    value -= decimal[i];
+	                    numeroRomano += romano[i];
+	                }
+	            }
+	        
+            return numeroRomano;
+	        
+            }
+	    }
+
+	    function convertir()
+         {
+	        var dec = document.getElementById('valorDecimal');
+	        if (dec.value.length > 0) document.getElementById('valorRomano').innerHTML = romanoADecimal(dec.value);
+	     }
+	
+    </script>
+
+</head>
+<body>
+	<h1>De decimal a romano</h1>
+
+    <p>Ingrese el número de un año en particular y conozca su equivalente en romano</p>
+
+    <b>Nota: Como su uso es para el ámbito histórico, solo se permiten valores para los años 1 hasta 3998</b><br /><br />
+
+	<form action="javascript:convertir();">
+	<label for="valorDecimal">Decimal:</label>
+	<input type="text" id="valorDecimal" />
+	<input type="submit" value="convertir" />
+	</form>
+
+	<div style="margin-top:5px">Romano: <span id="valorRomano" style="margin-left:5px" /></div>
+</body>
+</html>
